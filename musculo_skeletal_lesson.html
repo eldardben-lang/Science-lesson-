@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Musculo-Skeletal System — 5th Grade Science</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(150deg,#0e1a2e,#1a0e2e 55%,#0e2010);min-height:100vh;color:#fff;overflow-x:hidden}
+.root{position:relative;min-height:100vh;overflow:hidden}
+.deco{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.slide{position:relative;z-index:1;display:none;flex-direction:column;padding:20px 24px 12px;min-height:100vh;animation:sIn .42s cubic-bezier(.34,1.5,.64,1)}
+.slide.on{display:flex}
+@keyframes sIn{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.badge{font-size:10px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;padding:5px 13px;border-radius:20px;color:#fff}
+.timer{background:rgba(58,143,232,.18);border:1px solid rgba(58,143,232,.38);color:#85b7eb;font-size:12px;font-weight:800;padding:5px 12px;border-radius:20px}
+.ctr{font-size:12px;color:rgba(255,255,255,.55);font-weight:700}
+.stitle{font-family:'Fredoka One',sans-serif;font-size:28px;line-height:1.1;margin-bottom:4px;background:linear-gradient(135deg,#85b7eb,#5dcaa5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ssub{font-size:12px;color:rgba(255,255,255,.55);font-weight:600;margin-bottom:12px}
+.full{flex:1;display:flex;flex-direction:column;gap:11px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 14px}
+.clbl{font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:4px;opacity:.65}
+.ctxt{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;font-weight:600}
+.fact{border-radius:12px;padding:10px 13px;display:flex;align-items:flex-start;gap:9px;background:rgba(58,143,232,.1);border:1px solid rgba(58,143,232,.28)}
+.fi{font-size:18px;flex-shrink:0}
+.ft{font-size:12px;font-weight:700;color:#85b7eb;line-height:1.5}
+.ft strong{color:#fff;font-size:13px;display:block;margin-bottom:1px}
+.dots{display:flex;gap:5px;align-items:center;justify-content:center;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s;cursor:pointer;flex-shrink:0;border:none}
+.dot.active{background:#3a8fe8;width:18px;border-radius:4px}
+.dot.done{background:rgba(58,143,232,.45)}
+.navs{display:flex;gap:9px;justify-content:center;margin-top:10px}
+.nb{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:50px;padding:8px 20px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#fff;cursor:pointer;transition:all .2s}
+.nb:hover{background:rgba(58,143,232,.22);border-color:#3a8fe8}
+.nb.pri{border-color:transparent}
+.nb.pri:hover{transform:scale(1.04)}
+.big-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px}
+.big-title{font-family:'Fredoka One',sans-serif;font-size:38px;line-height:1.05;background:linear-gradient(135deg,#85b7eb,#5dcaa5 50%,#ef9f27);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu .6s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.big-sub{font-size:14px;color:rgba(255,255,255,.55);font-weight:700;max-width:360px;animation:fu .6s .1s ease both;opacity:0;animation-fill-mode:both}
+.tpill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:50px;padding:8px 17px;font-size:13px;font-weight:700;animation:fu .6s .22s ease both;opacity:0;animation-fill-mode:both}
+.mrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fu .6s .32s ease both;opacity:0;animation-fill-mode:both}
+.meta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:rgba(255,255,255,.55)}
+.mdot{width:7px;height:7px;border-radius:50%}
+.sbtn{border:none;border-radius:50px;padding:12px 32px;font-family:'Fredoka One',sans-serif;font-size:18px;color:#fff;cursor:pointer;animation:fu .6s .44s ease both;opacity:0;animation-fill-mode:both;transition:transform .18s;background:linear-gradient(135deg,#185fa5,#042c53)}
+.sbtn:hover{transform:scale(1.04)}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.ci:last-child{border:none}
+.ici{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px;font-weight:800}
+.organ-tab{padding:5px 12px;border-radius:50px;font-size:11px;font-weight:800;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;white-space:nowrap}
+.organ-tab.on{color:#fff;border-color:transparent}
+.chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:50px;padding:3px 10px;font-size:11px;font-weight:800;margin:2px}
+.mc-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:9px 11px;font-size:12px;font-weight:800;cursor:pointer;text-align:center;color:#fff;transition:all .2s;width:100%}
+.mc-btn:hover{border-color:rgba(255,255,255,.35)}
+.mc-btn.sel{border-color:#ef9f27;background:rgba(239,159,39,.14);color:#ef9f27}
+.mc-btn.hit{cursor:default}
+.mc-btn.bad{border-color:#e24b4a;background:rgba(226,75,74,.14);color:#f09595}
+.qbtn{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.13);border-radius:13px;padding:12px 8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#fff;cursor:pointer;text-align:center;transition:all .18s;width:100%}
+.qbtn:hover{background:rgba(255,255,255,.12);transform:scale(1.02)}
+.qbtn.correct{background:rgba(29,158,117,.2);border-color:#1d9e75;color:#5dcaa5}
+.qbtn.wrong{background:rgba(226,75,74,.18);border-color:#e24b4a;color:#f09595}
+.qfb{text-align:center;font-size:16px;font-weight:900;margin-top:12px;min-height:24px}
+.vcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:13px;padding:12px;cursor:pointer;transition:all .2s;min-height:78px;display:flex;flex-direction:column;justify-content:space-between}
+.vcard:hover{border-color:rgba(255,255,255,.3)}
+.vcard.flipped{border-color:#ef9f27;background:rgba(239,159,39,.1)}
+.vf{display:block}.vb{display:none}
+.vcard.flipped .vf{display:none}.vcard.flipped .vb{display:block}
+.pb{height:5px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:5px}
+.pf{height:100%;border-radius:3px;background:#3a8fe8;transition:width .4s}
+.tcg{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:350px;animation:fu .6s .26s ease both;opacity:0;animation-fill-mode:both}
+.tc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:11px;text-align:center}
+.tcl{font-size:11px;font-weight:700;color:rgba(255,255,255,.55)}
+.tcv{font-size:13px;font-weight:800}
+</style>
+</head>
+<body>
+<div class="root">
+<div class="deco" style="width:260px;height:260px;background:rgba(58,143,232,.07);top:-55px;right:-55px"></div>
+<div class="deco" style="width:180px;height:180px;background:rgba(93,202,165,.06);bottom:50px;left:-45px"></div>
+<div class="deco" style="width:140px;height:140px;background:rgba(239,159,39,.05);top:38%;right:8px"></div>
+
+<!-- SLIDE 0: TITLE -->
+<div class="slide on" id="sl-0">
+  <div class="topbar">
+    <span class="badge" style="background:linear-gradient(135deg,#185fa5,#042c53)">5th Grade Science</span>
+    <span class="timer">60 min lesson</span>
+  </div>
+  <div class="big-wrap">
+    <div style="font-size:52px;animation:fu .5s ease both">🦴 💪 🔬</div>
+    <div class="big-title">The Musculo-Skeletal System!</div>
+    <div class="big-sub">Discover how your 206 bones and 600+ muscles work together as an amazing team to give you structure and movement!</div>
+    <div class="tpill">
+      <div style="width:28px;height:28px;background:linear-gradient(135deg,#185fa5,#042c53);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">🔬</div>
+      Hi! I'm your science guide. Let's explore your body!
+    </div>
+    <div class="mrow">
+      <div class="meta"><div class="mdot" style="background:#85b7eb"></div>The Skeleton</div>
+      <div class="meta"><div class="mdot" style="background:#5dcaa5"></div>Bone Types</div>
+      <div class="meta"><div class="mdot" style="background:#ef9f27"></div>Muscles</div>
+      <div class="meta"><div class="mdot" style="background:#f09595"></div>Joints + Quiz</div>
+    </div>
+    <button class="sbtn" onclick="go(1)">Let's Explore! 🦴</button>
+  </div>
+  <div class="dots" id="d0"></div>
+</div>
+
+<!-- SLIDE 1: LESSON PLAN -->
+<div class="slide" id="sl-1">
+  <div class="topbar"><span class="badge" style="background:#185fa5">Lesson Plan</span><span class="ctr" id="c1"></span><span class="timer">60 min</span></div>
+  <div class="stitle">Today's Body Journey</div>
+  <div class="ssub">Our 60-minute exploration of bones and muscles 🗺️</div>
+  <div class="full">
+    <div class="card" style="flex:1">
+      <div class="ci"><div class="ici" style="background:rgba(133,183,235,.2);color:#85b7eb">✓</div><div><div style="font-size:13px;font-weight:700">What is the musculo-skeletal system?</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">0–8 min</div></div></div>
+      <div class="ci"><div class="ici" style="background:rgba(93,202,165,.2);color:#5dcaa5">→</div><div><div style="font-size:13px;font-weight:700">The skeleton — bones, functions and types</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">8–22 min</div></div></div>
+      <div class="ci"><div class="ici" style="background:rgba(239,159,39,.2);color:#ef9f27">○</div><div><div style="font-size:13px;font-weight:700">Muscles — types and how they work</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">22–35 min</div></div></div>
+      <div class="ci"><div class="ici" style="background:rgba(240,153,123,.2);color:#f09595">○</div><div><div style="font-size:13px;font-weight:700">Joints — how bones connect and move</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">35–44 min</div></div></div>
+      <div class="ci"><div class="ici" style="background:rgba(133,183,235,.2);color:#85b7eb">○</div><div><div style="font-size:13px;font-weight:700">How bones and muscles work together</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">44–52 min</div></div></div>
+      <div class="ci" style="border:none"><div class="ici" style="background:rgba(93,202,165,.2);color:#5dcaa5">○</div><div><div style="font-size:13px;font-weight:700">Vocab flashcards + Matching + Quiz</div><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600">52–60 min</div></div></div>
+    </div>
+    <div class="g2" style="flex:none">
+      <div class="fact"><div class="fi">💡</div><div class="ft"><strong>What is this system?</strong>The body system of bones, muscles, joints, tendons and ligaments that gives your body shape, support and the ability to move!</div></div>
+      <div class="fact" style="background:rgba(93,202,165,.1);border-color:rgba(93,202,165,.28)"><div class="fi">🦴</div><div class="ft" style="color:#5dcaa5"><strong>Amazing facts!</strong>You have 206 bones and over 600 muscles. Together they make up about 70% of your total body weight!</div></div>
+    </div>
+  </div>
+  <div class="dots" id="d1"></div>
+  <div class="navs"><button class="nb" onclick="go(0)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#185fa5,#042c53)" onclick="go(2)">Next →</button></div>
+</div>
+
+<!-- SLIDE 2: THE SKELETON -->
+<div class="slide" id="sl-2">
+  <div class="topbar"><span class="badge" style="background:#185fa5">The Skeleton</span><span class="ctr" id="c2"></span></div>
+  <div class="stitle">Your Amazing Skeleton 🦴</div>
+  <div class="ssub">206 bones with 4 vital jobs — tap to explore!</div>
+  <div class="full">
+    <div class="g2" style="flex:none">
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div class="card" style="border-left:3px solid #85b7eb;border-radius:0 12px 12px 0;padding:9px 12px"><div class="clbl" style="color:#85b7eb">Support 🏗️</div><div class="ctxt">The skeleton is your body's framework. It holds you upright and gives your body its shape — without it you'd collapse like jelly!</div></div>
+        <div class="card" style="border-left:3px solid #5dcaa5;border-radius:0 12px 12px 0;padding:9px 12px"><div class="clbl" style="color:#5dcaa5">Protection 🛡️</div><div class="ctxt">Bones protect vital organs. The skull shields the brain, the ribcage protects the heart and lungs, and the spine protects the spinal cord.</div></div>
+        <div class="card" style="border-left:3px solid #ef9f27;border-radius:0 12px 12px 0;padding:9px 12px"><div class="clbl" style="color:#ef9f27">Movement 🏃</div><div class="ctxt">Bones act as levers. When muscles pull on bones, the bones move at joints — like a hinge on a door!</div></div>
+        <div class="card" style="border-left:3px solid #f09595;border-radius:0 12px 12px 0;padding:9px 12px"><div class="clbl" style="color:#f09595">Blood Production 🩸</div><div class="ctxt">Red bone marrow inside bones produces red blood cells, white blood cells and platelets — millions every second!</div></div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:8px;display:flex;justify-content:center;align-items:center">
+        <svg viewBox="0 0 160 270" width="100%" style="max-height:268px">
+          <ellipse cx="80" cy="22" rx="28" ry="22" fill="rgba(133,183,235,.25)" stroke="#85b7eb" stroke-width="1.5"/>
+          <rect x="74" y="42" width="12" height="78" rx="4" fill="rgba(133,183,235,.2)" stroke="#85b7eb" stroke-width="1.5"/>
+          <path d="M74 60 Q50 60 48 75 Q50 90 74 88" fill="none" stroke="#5dcaa5" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <path d="M86 60 Q110 60 112 75 Q110 90 86 88" fill="none" stroke="#5dcaa5" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <path d="M74 70 Q52 70 50 82 Q52 94 74 92" fill="none" stroke="#5dcaa5" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>
+          <path d="M86 70 Q108 70 110 82 Q108 94 86 92" fill="none" stroke="#5dcaa5" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>
+          <path d="M58 130 Q42 142 48 162 Q62 172 80 168 Q98 172 112 162 Q118 142 102 130 Z" fill="rgba(133,183,235,.2)" stroke="#85b7eb" stroke-width="1.5"/>
+          <line x1="70" y1="58" x2="38" y2="102" stroke="#ef9f27" stroke-width="3" stroke-linecap="round"/>
+          <line x1="38" y1="102" x2="22" y2="140" stroke="#ef9f27" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="90" y1="58" x2="122" y2="102" stroke="#ef9f27" stroke-width="3" stroke-linecap="round"/>
+          <line x1="122" y1="102" x2="138" y2="140" stroke="#ef9f27" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="38" cy="102" r="5" fill="rgba(240,153,123,.4)" stroke="#f09595" stroke-width="1.2"/>
+          <circle cx="122" cy="102" r="5" fill="rgba(240,153,123,.4)" stroke="#f09595" stroke-width="1.2"/>
+          <line x1="70" y1="165" x2="60" y2="215" stroke="#85b7eb" stroke-width="4" stroke-linecap="round"/>
+          <line x1="60" y1="215" x2="58" y2="258" stroke="#85b7eb" stroke-width="3" stroke-linecap="round"/>
+          <line x1="90" y1="165" x2="100" y2="215" stroke="#85b7eb" stroke-width="4" stroke-linecap="round"/>
+          <line x1="100" y1="215" x2="102" y2="258" stroke="#85b7eb" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="60" cy="215" r="6" fill="rgba(240,153,123,.4)" stroke="#f09595" stroke-width="1.2"/>
+          <circle cx="100" cy="215" r="6" fill="rgba(240,153,123,.4)" stroke="#f09595" stroke-width="1.2"/>
+          <text x="80" y="14" font-family="Fredoka One" font-size="8" fill="#85b7eb" text-anchor="middle">Skull</text>
+          <text x="80" y="115" font-family="Fredoka One" font-size="7" fill="#85b7eb" text-anchor="middle">Spine</text>
+          <text x="44" y="74" font-family="Fredoka One" font-size="7" fill="#5dcaa5" text-anchor="middle">Ribs</text>
+          <text x="24" y="118" font-family="Fredoka One" font-size="7" fill="#ef9f27" text-anchor="middle">Humerus</text>
+          <text x="57" y="235" font-family="Fredoka One" font-size="7" fill="#85b7eb" text-anchor="middle">Femur</text>
+          <text x="80" y="267" font-family="Fredoka One" font-size="7" fill="#85b7eb" text-anchor="middle">Tibia</text>
+        </svg>
+      </div>
+    </div>
+    <div class="fact" style="flex:none"><div class="fi">⭐</div><div class="ft"><strong>Did you know?</strong>Babies are born with about 270 bones! As you grow, many fuse together. By adulthood you have exactly 206 bones.</div></div>
+  </div>
+  <div class="dots" id="d2"></div>
+  <div class="navs"><button class="nb" onclick="go(1)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#0f6e56,#04342c)" onclick="go(3)">Types of Bone →</button></div>
+</div>
+
+<!-- SLIDE 3: BONE TYPES -->
+<div class="slide" id="sl-3">
+  <div class="topbar"><span class="badge" style="background:#0f6e56">Bone Types</span><span class="ctr" id="c3"></span></div>
+  <div class="stitle">4 Types of Bones 🦴</div>
+  <div class="ssub">Each shape is perfectly designed for a different job in your body!</div>
+  <div class="full">
+    <div class="g2" style="flex:none">
+      <div class="card" style="border-left:3px solid #85b7eb;border-radius:0 12px 12px 0"><div class="clbl" style="color:#85b7eb">Long bones 🦵</div><div style="font-size:12px;font-weight:800;margin-bottom:4px;color:#fff">Limb levers</div><div class="ctxt">Longer than wide — act as levers for movement. Femur (thigh), humerus (upper arm), tibia (shin). Contain yellow marrow for fat storage.</div></div>
+      <div class="card" style="border-left:3px solid #5dcaa5;border-radius:0 12px 12px 0"><div class="clbl" style="color:#5dcaa5">Short bones 🤝</div><div style="font-size:12px;font-weight:800;margin-bottom:4px;color:#fff">Wrist & ankle</div><div class="ctxt">Roughly cube-shaped. Provide stability and some movement. Found in the wrists (carpals) and ankles (tarsals).</div></div>
+      <div class="card" style="border-left:3px solid #ef9f27;border-radius:0 12px 12px 0"><div class="clbl" style="color:#ef9f27">Flat bones 🛡️</div><div style="font-size:12px;font-weight:800;margin-bottom:4px;color:#fff">Protective plates</div><div class="ctxt">Thin, flat, often curved. Protect organs and provide muscle attachment. Examples: skull, shoulder blade (scapula), sternum (breastbone), ribs.</div></div>
+      <div class="card" style="border-left:3px solid #f09595;border-radius:0 12px 12px 0"><div class="clbl" style="color:#f09595">Irregular bones 🧩</div><div style="font-size:12px;font-weight:800;margin-bottom:4px;color:#fff">Unique shapes</div><div class="ctxt">Complex shapes that don't fit other categories. Examples: vertebrae (spine), facial bones, hip bones (pelvis).</div></div>
+    </div>
+    <div class="card">
+      <div class="clbl" style="color:#ef9f27">Inside a bone — what makes it strong?</div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px">
+        <svg width="90" height="80" viewBox="0 0 90 80"><rect x="30" y="4" width="30" height="72" rx="14" fill="rgba(133,183,235,.15)" stroke="#85b7eb" stroke-width="1.5"/><rect x="34" y="8" width="22" height="64" rx="10" fill="rgba(239,159,39,.15)" stroke="#ef9f27" stroke-width="1" stroke-dasharray="3,2"/><rect x="38" y="20" width="14" height="40" rx="6" fill="rgba(240,153,123,.2)" stroke="#f09595" stroke-width="1"/><text x="45" y="42" font-family="Fredoka One" font-size="7" fill="#f09595" text-anchor="middle">marrow</text><text x="45" y="10" font-family="Fredoka One" font-size="7" fill="#85b7eb" text-anchor="middle">compact</text><text x="45" y="76" font-family="Fredoka One" font-size="7" fill="#85b7eb" text-anchor="middle">bone</text></svg>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#85b7eb;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#85b7eb;font-weight:900">Compact bone</span> — hard outer layer, gives strength</div></div>
+          <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#ef9f27;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#ef9f27;font-weight:900">Spongy bone</span> — light, porous inner layer absorbs force</div></div>
+          <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#f09595;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#f09595;font-weight:900">Bone marrow</span> — soft centre that makes blood cells</div></div>
+          <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#5dcaa5;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#5dcaa5;font-weight:900">Periosteum</span> — tough outer membrane covering the bone</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fact" style="flex:none"><div class="fi">💪</div><div class="ft"><strong>Bone is stronger than concrete!</strong>Gram for gram, bone is about 5 times stronger than steel-reinforced concrete. Its hollow, spongy design makes it incredibly strong yet lightweight.</div></div>
+  </div>
+  <div class="dots" id="d3"></div>
+  <div class="navs"><button class="nb" onclick="go(2)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#854f0b,#412402)" onclick="go(4)">Muscles →</button></div>
+</div>
+
+<!-- SLIDE 4: MUSCLES -->
+<div class="slide" id="sl-4">
+  <div class="topbar"><span class="badge" style="background:#854f0b">Muscles</span><span class="ctr" id="c4"></span></div>
+  <div class="stitle">Your Powerful Muscles 💪</div>
+  <div class="ssub">Over 600 muscles — they can only PULL, never push! Tap each type to explore</div>
+  <div class="full">
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px" id="muscTabs"></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:10px" id="muscBody"></div>
+  </div>
+  <div class="dots" id="d4"></div>
+  <div class="navs"><button class="nb" onclick="go(3)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#a32d2d,#501313)" onclick="go(5)">Joints →</button></div>
+</div>
+
+<!-- SLIDE 5: JOINTS -->
+<div class="slide" id="sl-5">
+  <div class="topbar"><span class="badge" style="background:#a32d2d">Joints</span><span class="ctr" id="c5"></span></div>
+  <div class="stitle">Joints — Where Bones Meet 🔄</div>
+  <div class="ssub">Joints connect bones and allow different types of movement</div>
+  <div class="full">
+    <div class="g2" style="flex:none">
+      <div class="card" style="border-left:3px solid #85b7eb;border-radius:0 12px 12px 0"><div class="clbl" style="color:#85b7eb">Ball & socket 🔵</div><div class="ctxt">A round bone head sits in a cup-shaped socket. Moves in ALL directions. Found in: <span class="chip" style="border-color:rgba(133,183,235,.35);color:#85b7eb">Shoulder</span><span class="chip" style="border-color:rgba(133,183,235,.35);color:#85b7eb">Hip</span></div></div>
+      <div class="card" style="border-left:3px solid #5dcaa5;border-radius:0 12px 12px 0"><div class="clbl" style="color:#5dcaa5">Hinge joint 🚪</div><div class="ctxt">Works like a door hinge — bends and straightens in ONE direction only. Found in: <span class="chip" style="border-color:rgba(93,202,165,.35);color:#5dcaa5">Knee</span><span class="chip" style="border-color:rgba(93,202,165,.35);color:#5dcaa5">Elbow</span><span class="chip" style="border-color:rgba(93,202,165,.35);color:#5dcaa5">Fingers</span></div></div>
+      <div class="card" style="border-left:3px solid #ef9f27;border-radius:0 12px 12px 0"><div class="clbl" style="color:#ef9f27">Pivot joint 🔄</div><div class="ctxt">One bone rotates around another. Rotation only. Found in: <span class="chip" style="border-color:rgba(239,159,39,.35);color:#ef9f27">Neck</span><span class="chip" style="border-color:rgba(239,159,39,.35);color:#ef9f27">Forearm</span></div></div>
+      <div class="card" style="border-left:3px solid #f09595;border-radius:0 12px 12px 0"><div class="clbl" style="color:#f09595">Fixed joint 🔒</div><div class="ctxt">Bones are fused — NO movement at all. Found in: <span class="chip" style="border-color:rgba(240,153,123,.35);color:#f09595">Skull plates</span></div></div>
+    </div>
+    <div class="card">
+      <div class="clbl" style="color:#5dcaa5">What is inside a joint?</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:6px">
+        <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#85b7eb;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#85b7eb;font-weight:900">Cartilage</span> — smooth, rubbery tissue that stops bones grinding together</div></div>
+        <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#ef9f27;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#ef9f27;font-weight:900">Ligaments</span> — tough bands that hold bone to bone at the joint</div></div>
+        <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#5dcaa5;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#5dcaa5;font-weight:900">Synovial fluid</span> — slippery fluid that lubricates the joint like oil in an engine</div></div>
+        <div style="display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:#f09595;flex-shrink:0;display:inline-block"></span><div class="ctxt"><span style="color:#f09595;font-weight:900">Tendons</span> — connect muscles to bones (ligaments = bone to bone)</div></div>
+      </div>
+    </div>
+    <div class="fact" style="flex:none"><div class="fi">🏃</div><div class="ft"><strong>Tendons vs Ligaments!</strong><span style="color:#5dcaa5">Ligaments link Bone to Bone</span> · <span style="color:#ef9f27">Tendons attach muscle to bone</span>. Easy memory trick: Tendons pull on bone to create movement!</div></div>
+  </div>
+  <div class="dots" id="d5"></div>
+  <div class="navs"><button class="nb" onclick="go(4)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#533489,#26215c)" onclick="go(6)">Working Together →</button></div>
+</div>
+
+<!-- SLIDE 6: TEAMWORK -->
+<div class="slide" id="sl-6">
+  <div class="topbar"><span class="badge" style="background:#533489">Teamwork</span><span class="ctr" id="c6"></span></div>
+  <div class="stitle">Bones & Muscles — The Dream Team! 🤝</div>
+  <div class="ssub">Muscles ALWAYS work in pairs — when one contracts, the other relaxes</div>
+  <div class="full">
+    <div class="card">
+      <div class="clbl" style="color:#85b7eb">The bicep / tricep — the classic antagonistic pair</div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px">
+        <svg width="120" height="90" viewBox="0 0 120 90"><line x1="60" y1="8" x2="60" y2="82" stroke="#85b7eb" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="8" r="7" fill="rgba(133,183,235,.3)" stroke="#85b7eb" stroke-width="1.5"/><circle cx="60" cy="82" r="7" fill="rgba(133,183,235,.3)" stroke="#85b7eb" stroke-width="1.5"/><path d="M35 20 Q20 45 35 60" fill="none" stroke="#ef9f27" stroke-width="6" stroke-linecap="round"/><text x="12" y="42" font-family="Fredoka One" font-size="9" fill="#ef9f27" text-anchor="middle">Bicep</text><text x="12" y="52" font-family="Fredoka One" font-size="8" fill="rgba(239,159,39,.6)" text-anchor="middle">(flexor)</text><path d="M85 20 Q100 45 85 60" fill="none" stroke="#5dcaa5" stroke-width="6" stroke-linecap="round" opacity=".5"/><text x="108" y="42" font-family="Fredoka One" font-size="9" fill="#5dcaa5" text-anchor="middle">Tricep</text><text x="108" y="52" font-family="Fredoka One" font-size="8" fill="rgba(93,202,165,.6)" text-anchor="middle">(extensor)</text></svg>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:700;color:#fff">When you <span style="color:#ef9f27">BEND</span> your arm:</div>
+          <div class="ctxt">Bicep <span style="color:#ef9f27;font-weight:900">contracts</span> (shortens) → pulls forearm UP<br>Tricep <span style="color:#5dcaa5;font-weight:900">relaxes</span> (lengthens) → lets arm bend</div>
+          <div style="font-size:12px;font-weight:700;color:#fff;margin-top:4px">When you <span style="color:#5dcaa5">STRAIGHTEN</span> your arm:</div>
+          <div class="ctxt">Tricep <span style="color:#5dcaa5;font-weight:900">contracts</span> → pulls forearm DOWN<br>Bicep <span style="color:#ef9f27;font-weight:900">relaxes</span> → lets arm straighten</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="clbl" style="color:#f5c475">Step-by-step — what happens when you kick a ball 🦵</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)"><div style="width:24px;height:24px;border-radius:50%;background:rgba(133,183,235,.2);border:1px solid #85b7eb55;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:12px;color:#85b7eb;flex-shrink:0">1</div><div class="ctxt">Your brain sends a nerve signal to the quadriceps muscle (front of thigh)</div></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)"><div style="width:24px;height:24px;border-radius:50%;background:rgba(239,159,39,.2);border:1px solid #ef9f2755;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:12px;color:#ef9f27;flex-shrink:0">2</div><div class="ctxt">The quadriceps <span style="color:#ef9f27;font-weight:900">contracts</span> — the tendon pulls on the shin bone (tibia)</div></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)"><div style="width:24px;height:24px;border-radius:50%;background:rgba(93,202,165,.2);border:1px solid #5dcaa555;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:12px;color:#5dcaa5;flex-shrink:0">3</div><div class="ctxt">The knee hinge joint straightens — the lower leg swings forward powerfully</div></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)"><div style="width:24px;height:24px;border-radius:50%;background:rgba(240,153,123,.2);border:1px solid #f0959555;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:12px;color:#f09595;flex-shrink:0">4</div><div class="ctxt">The hamstring (back of thigh) <span style="color:#5dcaa5;font-weight:900">relaxes</span> to allow this extension</div></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 0"><div style="width:24px;height:24px;border-radius:50%;background:rgba(201,179,245,.2);border:1px solid #c9b3f555;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:12px;color:#c9b3f5;flex-shrink:0">5</div><div class="ctxt">Your foot strikes the ball — force transferred through bones and muscles! ⚽</div></div>
+      </div>
+    </div>
+    <div class="fact" style="flex:none"><div class="fi">💡</div><div class="ft"><strong>Antagonistic pairs!</strong>Muscles ALWAYS work in pairs — flexors bend joints, extensors straighten them. They take turns contracting and relaxing to give you smooth, controlled movement.</div></div>
+  </div>
+  <div class="dots" id="d6"></div>
+  <div class="navs"><button class="nb" onclick="go(5)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#854f0b,#412402)" onclick="go(7)">Vocab Cards →</button></div>
+</div>
+
+<!-- SLIDE 7: VOCAB -->
+<div class="slide" id="sl-7">
+  <div class="topbar"><span class="badge" style="background:#854f0b">Vocabulary</span><span class="ctr" id="c7"></span></div>
+  <div class="stitle">Science Words to Know 📚</div>
+  <div class="ssub">Tap each card to flip it and see the definition</div>
+  <div class="full">
+    <div style="font-size:12px;color:rgba(255,255,255,.55);font-weight:700"><span id="flippedCount">0</span> of 8 flipped<div class="pb"><div class="pf" id="progBar" style="width:0%"></div></div></div>
+    <div class="g2" style="flex:1" id="vocabGrid"></div>
+    <div class="fact" style="flex:none"><div class="fi">🧠</div><div class="ft"><strong>Study tip!</strong>Picture what each word does inside your body, then flip to check yourself!</div></div>
+  </div>
+  <div class="dots" id="d7"></div>
+  <div class="navs"><button class="nb" onclick="go(6)">← Back</button><button class="nb" onclick="resetVocab()" style="font-size:12px">Reset</button><button class="nb pri" style="background:linear-gradient(135deg,#185fa5,#042c53)" onclick="go(8)">Matching Game →</button></div>
+</div>
+
+<!-- SLIDE 8: MATCHING -->
+<div class="slide" id="sl-8">
+  <div class="topbar"><span class="badge" style="background:#185fa5">Matching Game</span><span class="ctr" id="c8"></span></div>
+  <div class="stitle">Match It! 🎮</div>
+  <div class="ssub">Tap a body part, then tap what it does</div>
+  <div class="full">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1">
+      <div style="display:flex;flex-direction:column;gap:6px" id="mLeft"></div>
+      <div style="display:flex;flex-direction:column;gap:6px" id="mRight"></div>
+    </div>
+    <div style="text-align:center;font-size:13px;font-weight:800;min-height:20px;color:rgba(255,255,255,.55)" id="mFb"></div>
+    <div style="text-align:center"><button class="nb" onclick="resetMatch()" style="font-size:12px;padding:6px 14px">Reset</button></div>
+    <div class="fact" style="flex:none"><div class="fi">💡</div><div class="ft"><strong>Quick reminder!</strong>Tendons = muscle to bone · Ligaments = bone to bone · Cartilage = cushions joints · Bicep = bends arm!</div></div>
+  </div>
+  <div class="dots" id="d8"></div>
+  <div class="navs"><button class="nb" onclick="go(7)">← Back</button><button class="nb pri" style="background:linear-gradient(135deg,#a32d2d,#501313)" onclick="go(9)">Final Quiz! 🎯</button></div>
+</div>
+
+<!-- SLIDE 9: QUIZ -->
+<div class="slide" id="sl-9">
+  <div class="topbar"><span class="badge" style="background:#a32d2d">Final Quiz!</span><span class="ctr" id="c9"></span></div>
+  <div class="stitle">Test Your Knowledge! 🔬</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.55);font-weight:700;margin-bottom:4px" id="qProg">Question 1 of 7</div>
+  <div class="full" style="justify-content:center">
+    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;font-family:'Fredoka One',sans-serif;font-size:17px;text-align:center;line-height:1.35;min-height:70px;display:flex;align-items:center;justify-content:center" id="qText"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="qOpts"></div>
+    <div class="qfb" id="qFb"></div>
+    <div style="display:flex;justify-content:center;margin-top:8px"><button class="nb pri" id="nqBtn" onclick="nextQ()" style="display:none;background:linear-gradient(135deg,#185fa5,#042c53)">Next Question →</button></div>
+  </div>
+  <div class="dots" id="d9"></div>
+  <div class="navs"><button class="nb" onclick="go(8)">← Back</button></div>
+</div>
+
+<!-- SLIDE 10: COMPLETE -->
+<div class="slide" id="sl-10">
+  <div class="topbar"><span class="badge" style="background:#1d9e75">Complete!</span><span class="ctr" id="c10"></span></div>
+  <div class="big-wrap">
+    <div style="font-size:58px;animation:fu .5s ease both">🏆</div>
+    <div class="big-title" style="font-size:34px">Body Science Expert!</div>
+    <div class="big-sub">Incredible! You now know how your bones and muscles work together to give your body structure and movement!</div>
+    <div class="tcg">
+      <div class="tc"><div style="font-size:18px;margin-bottom:3px">🦴</div><div class="tcl">Bone types</div><div class="tcv" style="color:#85b7eb">4 types</div></div>
+      <div class="tc"><div style="font-size:18px;margin-bottom:3px">💪</div><div class="tcl">Muscle types</div><div class="tcv" style="color:#ef9f27">3 types</div></div>
+      <div class="tc"><div style="font-size:18px;margin-bottom:3px">🔄</div><div class="tcl">Joint types</div><div class="tcv" style="color:#5dcaa5">4 types</div></div>
+      <div class="tc"><div style="font-size:18px;margin-bottom:3px">🎯</div><div class="tcl">Quiz score</div><div class="tcv" style="color:#f09595" id="finalScore">—</div></div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.55);font-weight:700;text-align:center;max-width:340px;animation:fu .6s .42s ease both;opacity:0;animation-fill-mode:both">Remember: <span style="color:#85b7eb;font-weight:900">Bones = structure · Muscles = movement · They work as antagonistic pairs!</span></div>
+    <button class="sbtn" style="animation-delay:.5s" onclick="restartAll()">Start Over 🔄</button>
+  </div>
+  <div class="dots" id="d10"></div>
+</div>
+
+</div>
+<script>
+const TOTAL=11;
+let cur=0,qIdx=0,qScore=0,qAns=false,activeMusc=0,mSel=null,mMatched=0,flipped=0;
+
+const muscleTypes=[
+  {name:'Skeletal muscles',short:'Skeletal',col:'#ef9f27',icon:'💪',desc:'Also called voluntary muscles — YOU control them consciously. Attached to bones by tendons. They contract and relax to move your skeleton. Examples: bicep, tricep, quadriceps, hamstrings.',fact:'You use about 200 skeletal muscles just to take a single step!',location:'Attached to bones throughout the body',control:'✅ Voluntary — YOU control it'},
+  {name:'Smooth muscles',short:'Smooth',col:'#5dcaa5',icon:'🫀',desc:'Involuntary muscles — you CANNOT control them. Found in walls of internal organs. They work automatically without you thinking about it.',fact:'Smooth muscles in your digestive tract work 24 hours a day pushing food through peristalsis!',location:'Stomach, intestines, blood vessels, bladder',control:'🔄 Involuntary — works automatically'},
+  {name:'Cardiac muscle',short:'Cardiac',col:'#f09595',icon:'❤️',desc:'Found ONLY in the heart. Involuntary — it never gets tired and beats on its own. Pumps blood around your entire body all your life.',fact:'Your heart beats about 100,000 times per day — over 3 billion times in a lifetime!',location:'Heart walls only',control:'🔄 Involuntary — never stops!'},
+];
+
+const vocab=[
+  {word:'Skeletal system',def:'The framework of 206 bones that gives the body shape, support, protection and attachment points for muscles.'},
+  {word:'Muscular system',def:'The system of 600+ muscles that contract and relax to move bones and power all body movements.'},
+  {word:'Tendon',def:'A tough cord of fibrous tissue that connects muscle to bone — transmits the pulling force of a muscle to move the bone.'},
+  {word:'Ligament',def:'A tough band of tissue that connects bone to bone at a joint, holding the joint together and limiting excess movement.'},
+  {word:'Cartilage',def:'Smooth, rubbery tissue at the ends of bones that cushions joints and prevents bones from grinding against each other.'},
+  {word:'Contraction',def:'When a muscle shortens and tightens, generating force to pull a bone and create movement at a joint.'},
+  {word:'Antagonistic pair',def:'Two muscles that work opposite to each other — when one contracts, the other relaxes — to control movement in both directions.'},
+  {word:'Joint',def:'The point where two or more bones meet. Joints allow movement and are held together by ligaments, lubricated by synovial fluid.'},
+];
+
+const matchPairs=[
+  {part:'Tendon',job:'Connects muscle to bone',col:'#ef9f27'},
+  {part:'Ligament',job:'Connects bone to bone',col:'#85b7eb'},
+  {part:'Cartilage',job:'Cushions and protects joint surfaces',col:'#5dcaa5'},
+  {part:'Bicep',job:'Flexor — bends the arm when it contracts',col:'#c9b3f5'},
+  {part:'Tricep',job:'Extensor — straightens the arm when it contracts',col:'#f09595'},
+  {part:'Bone marrow',job:'Produces red and white blood cells',col:'#f5c475'},
+];
+
+const questions=[
+  {q:'What are the TWO main jobs of the skeleton?',opts:['Breathing and digesting','Support and protection','Hearing and seeing','Pumping blood and breathing'],ans:1,explain:'The skeleton provides SUPPORT (holds your body upright) and PROTECTION (skull protects brain, ribcage protects heart and lungs). It also enables movement and produces blood cells.'},
+  {q:'Muscles can only PULL. How do they move bones in both directions?',opts:['They rotate automatically','They use electricity','They work in antagonistic pairs — one contracts while the other relaxes','They push using chemical reactions'],ans:2,explain:'Muscles work in antagonistic pairs. When the bicep contracts to bend your arm, the tricep relaxes. To straighten, the tricep contracts while the bicep relaxes — they take turns!'},
+  {q:'What connects a muscle to a bone?',opts:['Ligament','Cartilage','Synovial fluid','Tendon'],ans:3,explain:'Tendons are tough fibrous cords that connect muscles to bones. When a muscle contracts, the tendon transmits that pulling force to move the bone at the joint.'},
+  {q:'What type of joint is the knee?',opts:['Ball and socket','Pivot joint','Hinge joint','Fixed joint'],ans:2,explain:'The knee is a hinge joint — it works like a door hinge, only bending and straightening in one direction. The elbow and finger joints are also hinge joints.'},
+  {q:'Which type of muscle is found ONLY in the heart?',opts:['Skeletal muscle','Smooth muscle','Cardiac muscle','Voluntary muscle'],ans:2,explain:'Cardiac muscle is found exclusively in the heart. It is involuntary and never tires — beating about 100,000 times per day throughout your entire life.'},
+  {q:'How many bones does an adult human body have?',opts:['180','206','270','350'],ans:1,explain:'Adults have 206 bones. Babies are born with about 270 bones, but many fuse together as they grow. By around age 25, the skeleton is fully fused at 206 bones.'},
+  {q:'What is the purpose of cartilage in a joint?',opts:['To connect muscle to bone','To produce blood cells','To cushion bone ends and prevent them grinding together','To make the joint stiff and fixed'],ans:2,explain:'Cartilage is smooth, rubbery tissue covering the ends of bones at joints. It acts as a shock absorber and prevents painful bone-on-bone grinding. Synovial fluid keeps it lubricated.'},
+];
+
+function go(n){
+  document.getElementById('sl-'+cur).classList.remove('on');
+  cur=n;document.getElementById('sl-'+n).classList.add('on');
+  updateDots();
+  if(n===4)initMuscTabs();
+  if(n===7)buildVocab();
+  if(n===8)initMatch();
+  if(n===9)renderQ();
+}
+
+function makeDots(){
+  for(let s=0;s<TOTAL;s++){
+    const el=document.getElementById('d'+s);if(!el)continue;
+    for(let i=0;i<TOTAL;i++){
+      const d=document.createElement('button');d.className='dot'+(i===s?' active':i<s?' done':'');
+      d.onclick=(x=>()=>go(x))(i);el.appendChild(d);
+    }
+  }
+  for(let s=1;s<TOTAL;s++){const el=document.getElementById('c'+s);if(el)el.textContent=(s+1)+' / '+TOTAL;}
+}
+
+function updateDots(){
+  for(let s=0;s<TOTAL;s++){
+    const el=document.getElementById('d'+s);if(!el)continue;
+    el.querySelectorAll('.dot').forEach((d,i)=>{d.className='dot'+(i===s?' active':i<s?' done':'');});
+  }
+}
+
+function initMuscTabs(){
+  const t=document.getElementById('muscTabs');
+  if(t.dataset.init){showMusc(activeMusc);return;}
+  t.dataset.init='1';
+  muscleTypes.forEach((m,i)=>{
+    const b=document.createElement('button');
+    b.className='organ-tab'+(i===0?' on':'');
+    if(i===0){b.style.background=m.col;b.style.borderColor=m.col;}
+    b.textContent=m.icon+' '+m.short;
+    b.onclick=()=>{
+      document.querySelectorAll('.organ-tab').forEach(x=>{x.classList.remove('on');x.style.background='';x.style.borderColor='';});
+      b.classList.add('on');b.style.background=m.col;b.style.borderColor=m.col;
+      activeMusc=i;showMusc(i);
+    };
+    t.appendChild(b);
+  });
+  showMusc(0);
+}
+
+function showMusc(i){
+  const m=muscleTypes[i];
+  document.getElementById('muscBody').innerHTML=`
+    <div class="g2" style="flex:none">
+      <div class="card" style="border-left:3px solid ${m.col};border-radius:0 12px 12px 0">
+        <div class="clbl" style="color:${m.col}">${m.icon} ${m.name}</div>
+        <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px">Location</div>
+        <div style="font-size:12px;color:${m.col};font-weight:700;margin-bottom:8px">${m.location}</div>
+        <div class="ctxt">${m.desc}</div>
+      </div>
+      <div class="card">
+        <div class="clbl" style="color:${m.col}">Voluntary or involuntary?</div>
+        <div style="background:rgba(255,255,255,.06);border-radius:9px;padding:8px 10px;margin-bottom:8px;font-size:13px;font-weight:800;color:#fff">${m.control}</div>
+        <div class="clbl" style="color:${m.col}">Fun fact</div>
+        <div class="ctxt">${m.fact}</div>
+      </div>
+    </div>
+    <div class="fact" style="background:rgba(255,255,255,.06);border:1px solid ${m.col}55;flex:none">
+      <div class="fi">💡</div>
+      <div class="ft" style="color:${m.col}"><strong>How it works:</strong> ${i===0?'Skeletal muscles receive signals from your brain via nerves. Thin fibres inside the muscle (actin and myosin) slide past each other, shortening the muscle.':i===1?'Smooth muscles are controlled by the autonomic nervous system — the part that runs automatic functions like digestion without you consciously thinking.':'Cardiac muscle has a built-in electrical pacemaker (the SA node) that generates its own rhythm — about 60–100 beats per minute at rest.'}</div>
+    </div>`;
+}
+
+function buildVocab(){
+  const g=document.getElementById('vocabGrid');
+  if(g.dataset.built)return;g.dataset.built='1';
+  vocab.forEach(v=>{
+    const c=document.createElement('div');c.className='vcard';
+    c.innerHTML=`<div class="vf"><div style="font-family:'Fredoka One',sans-serif;font-size:14px;color:#3a8fe8">${v.word}</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:5px">Tap to flip →</div></div><div class="vb" style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.6">${v.def}<div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px">Tap to flip back</div></div>`;
+    c.onclick=()=>{
+      const was=c.classList.contains('flipped');c.classList.toggle('flipped');
+      flipped=was?Math.max(0,flipped-1):flipped+1;
+      document.getElementById('flippedCount').textContent=flipped;
+      document.getElementById('progBar').style.width=Math.round(flipped/vocab.length*100)+'%';
+    };
+    g.appendChild(c);
+  });
+}
+
+function resetVocab(){
+  flipped=0;document.getElementById('flippedCount').textContent='0';
+  document.getElementById('progBar').style.width='0%';
+  document.querySelectorAll('.vcard').forEach(c=>c.classList.remove('flipped'));
+}
+
+function initMatch(){
+  const lEl=document.getElementById('mLeft'),rEl=document.getElementById('mRight');
+  if(lEl.dataset.init)return;lEl.dataset.init='1';
+  mSel=null;mMatched=0;
+  const sh=[...matchPairs].sort(()=>Math.random()-.5);
+  matchPairs.forEach((p,i)=>{
+    const c=document.createElement('button');c.className='mc-btn';c.textContent=p.part;c.dataset.i=i;
+    c.onclick=()=>pickM(c,'L',i);lEl.appendChild(c);
+  });
+  sh.forEach(p=>{
+    const oi=matchPairs.findIndex(m=>m.part===p.part);
+    const c=document.createElement('button');c.className='mc-btn';c.textContent=p.job;c.dataset.i=oi;
+    c.onclick=()=>pickM(c,'R',oi);rEl.appendChild(c);
+  });
+}
+
+function pickM(el,side,idx){
+  if(el.classList.contains('hit'))return;
+  if(!mSel||mSel.side===side){
+    document.querySelectorAll('#mLeft .mc-btn,#mRight .mc-btn').forEach(c=>{if(!c.classList.contains('hit'))c.classList.remove('sel');});
+    el.classList.add('sel');mSel={el,idx,side};return;
+  }
+  const prev=mSel;mSel=null;
+  const fb=document.getElementById('mFb');
+  if(prev.idx===idx){
+    const col=matchPairs[idx].col;
+    [prev.el,el].forEach(e=>{e.classList.remove('sel');e.classList.add('hit');e.style.borderColor=col;e.style.background=col+'28';e.style.color=col;});
+    mMatched++;fb.textContent=mMatched===6?'🎉 Perfect! All matched!':'✅ Correct! Keep going!';fb.style.color='#5dcaa5';
+  } else {
+    el.classList.add('sel');[prev.el,el].forEach(e=>e.classList.add('bad'));
+    fb.textContent='❌ Not quite — try again!';fb.style.color='#f09595';
+    setTimeout(()=>{prev.el.classList.remove('sel','bad');el.classList.remove('sel','bad');fb.textContent='';},900);
+  }
+}
+
+function resetMatch(){
+  const l=document.getElementById('mLeft'),r=document.getElementById('mRight');
+  l.innerHTML='';r.innerHTML='';delete l.dataset.init;
+  mMatched=0;mSel=null;document.getElementById('mFb').textContent='';initMatch();
+}
+
+function renderQ(){
+  if(qIdx>=questions.length){
+    document.getElementById('qText').textContent='Quiz complete!';
+    document.getElementById('qOpts').innerHTML='';
+    document.getElementById('qFb').textContent='Score: '+qScore+'/'+questions.length+' — Outstanding scientist!';
+    document.getElementById('qFb').style.color='#5dcaa5';
+    document.getElementById('nqBtn').style.display='none';
+    document.getElementById('finalScore').textContent=qScore+'/'+questions.length;
+    setTimeout(()=>go(10),2200);return;
+  }
+  const q=questions[qIdx];
+  document.getElementById('qProg').textContent='Question '+(qIdx+1)+' of '+questions.length;
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('qFb').textContent='';
+  document.getElementById('nqBtn').style.display='none';
+  qAns=false;
+  const el=document.getElementById('qOpts');el.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='qbtn';b.textContent=o;
+    b.onclick=()=>ansQ(i,b);el.appendChild(b);
+  });
+}
+
+function ansQ(i,btn){
+  if(qAns)return;qAns=true;
+  const q=questions[qIdx];
+  document.querySelectorAll('.qbtn')[q.ans].classList.add('correct');
+  const fb=document.getElementById('qFb');
+  if(i===q.ans){qScore++;fb.textContent='⭐ Correct! Great work!';fb.style.color='#5dcaa5';}
+  else{btn.classList.add('wrong');fb.textContent='❌ Not quite — check the green answer!';fb.style.color='#f09595';}
+  document.getElementById('nqBtn').style.display='inline-flex';
+}
+
+function nextQ(){qIdx++;renderQ();}
+
+function restartAll(){
+  qIdx=0;qScore=0;qAns=false;activeMusc=0;mMatched=0;mSel=null;flipped=0;
+  ['mLeft','mRight'].forEach(id=>{const e=document.getElementById(id);if(e){e.innerHTML='';delete e.dataset.init;}});
+  const mt=document.getElementById('muscTabs');if(mt){mt.innerHTML='';delete mt.dataset.init;}
+  const vg=document.getElementById('vocabGrid');if(vg){vg.innerHTML='';delete vg.dataset.built;}
+  document.getElementById('flippedCount').textContent='0';
+  document.getElementById('progBar').style.width='0%';
+  go(0);
+}
+
+makeDots();
+</script>
+</body>
+</html>
